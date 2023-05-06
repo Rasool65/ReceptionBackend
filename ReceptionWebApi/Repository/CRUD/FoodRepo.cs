@@ -6,11 +6,11 @@ namespace ReceptionWebApi.Repository.CRUD
     public class FoodRepo :IFood
     {
         private List<Food> _food;
-
+        private GeneralContext _generalContext;
         public FoodRepo()
         {
-            _food = new List<Food>();
-            
+            //_food = new List<Food>();
+            _food = _generalContext.Foods.ToList();
             //_food = new() { new tblUser { Id = 1, FirstName = "Rasool", LastName = "Aghajani" } };
         }
 
@@ -31,7 +31,8 @@ namespace ReceptionWebApi.Repository.CRUD
 
         public IEnumerable<Food> GetFoods()
         {
-            throw new NotImplementedException();
+            _food = _generalContext.Foods.ToList();
+            return _food;
         }
 
         public void UpdateFood(int id, Food food)
