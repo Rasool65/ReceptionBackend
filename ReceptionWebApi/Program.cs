@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using ReceptionWebApi.DataContext;
 using ReceptionWebApi.Repository;
-
+using ReceptionWebApi.Repository.CRUD;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
@@ -24,8 +24,10 @@ var configuration = builder
 
 builder.Services.AddSingleton<ITblUser, InMemTblUserRep>();
 
-builder.Services.AddDbContext<GeneralContext>(options =>
-    options.UseSqlServer(configuration.GetConnectionString("GeneralContext")));
+builder.Services.AddSingleton<IFood, FoodRepo>();
+
+//builder.Services.AddDbContext<GeneralContext>(options =>
+//    options.UseSqlServer("Data Source=.;Initial Catalog=DBReception;Integrated Security=True;Trusted_Connection=True;"));
 //builder.Services.InstallServicesAssembly(configuration);
 //builder.Services.AddApplication(configuration);
 

@@ -33,6 +33,10 @@ namespace ReceptionWebApi.DataContext
         public DbSet<ReceptionPlace> ReceptionPlaces { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<RoleOrder> RoleOrders { get; set; }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer("Server=.;Database=DBReception;TrustServerCertificate=True;Trusted_Connection=True;");
+        }
 
     }
 }
